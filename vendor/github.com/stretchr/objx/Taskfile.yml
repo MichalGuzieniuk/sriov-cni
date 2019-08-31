@@ -1,5 +1,6 @@
 version: '2'
 
+<<<<<<< HEAD
 env:
   GOFLAGS: -mod=vendor
 
@@ -28,3 +29,28 @@ tasks:
     desc: Runs go tests and calucates test coverage
     cmds:
       - go test -race -coverprofile=c.out ./...
+=======
+dl-deps:
+  desc: Downloads cli dependencies
+  cmds:
+    - go get -u github.com/golang/lint/golint
+    - go get -u github.com/golang/dep/cmd/dep
+
+update-deps:
+  desc: Updates dependencies
+  cmds:
+    - dep ensure
+    - dep ensure -update
+    - dep prune
+
+lint:
+  desc: Runs golint
+  cmds:
+    - golint $(ls *.go | grep -v "doc.go")
+  silent: true
+
+test:
+  desc: Runs go tests
+  cmds:
+    - go test -race  .
+>>>>>>> update vendor with go mod vendor

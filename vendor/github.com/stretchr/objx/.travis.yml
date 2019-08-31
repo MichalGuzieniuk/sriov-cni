@@ -1,5 +1,6 @@
 language: go
 go:
+<<<<<<< HEAD
   - "1.10.x"
   - "1.11.x"
   - "1.12.x"
@@ -28,3 +29,16 @@ script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+=======
+  - 1.8
+  - 1.9
+  - tip
+
+install:
+- go get github.com/go-task/task/cmd/task
+
+script:
+- task dl-deps
+- task lint
+- task test
+>>>>>>> update vendor with go mod vendor
